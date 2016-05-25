@@ -1,4 +1,4 @@
-package traitAbstractClassesAndTypes.assignments;
+package workshop2.assignments;
 
 public class ShapeDemo {
 

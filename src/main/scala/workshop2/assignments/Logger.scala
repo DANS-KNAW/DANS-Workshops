@@ -1,4 +1,4 @@
-package traitAbstractClassesAndTypes.assignments
+package workshop2.assignments
 
 import java.time.LocalDateTime
 import java.time.format.{DateTimeFormatter, FormatStyle}
