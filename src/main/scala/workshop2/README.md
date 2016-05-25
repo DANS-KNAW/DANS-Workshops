@@ -1,3 +1,4 @@
+#Workshop 1
 In this second workshop we will cover the following topics:
 * [Abstract classes](abstract classes.sc) - *this is the inheritance pattern that you are familiar with from Java*
 * Inheritance with traits and classes
