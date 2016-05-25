@@ -4,29 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.heest.richard</groupId>
-    <artifactId>DANS-Scala-Workshops</artifactId>
+    <parent>
+        <groupId>nl.knaw.dans.shared</groupId>
+        <artifactId>dans-scala-prototype</artifactId>
+        <version>1.21</version>
+    </parent>
+
+    <groupId>nl.knaw.dans.course</groupId>
+    <artifactId>course-scala</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.11.6</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
