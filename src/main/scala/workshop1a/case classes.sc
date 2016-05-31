@@ -22,6 +22,12 @@ case class Foo(i: Int, s: String)
 case class Bar(i: Int, var s: String)
 
 /*
+  - Same as `Bar`
+  - with default value for `s`
+ */
+case class Foobar(i: Int, var s: String = "")
+
+/*
   - private fields `i` and `s`
   - public fields `isEven` and `stringLength`
   - a constructor with arguments `i` and `s`
@@ -45,6 +51,12 @@ bar.i
 bar.s
 bar.s = "abc"
 bar.s
+
+val foobar = Foobar(2)
+foobar.i
+foobar.s
+foobar.s = "abc"
+foobar.s
 
 val baz = Baz(3, "ghi")
 // can't access the constructor fields

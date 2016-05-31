@@ -16,11 +16,18 @@ class Foo(i: Int, s: String)
 class Bar(val i: Int, var s: String)
 
 /*
+  - Same as `Bar`
+  - with default value for `s`
+ */
+class Foobar(val i: Int, var s: String = "")
+
+/*
   - private fields `i` and `s`
   - public fields `isEven` and `stringLength`
   - a constructor with arguments `i` and `s`
   - a getter for `isEven` and `stringLength`
   - inherits standard `equals`, `hashCode` and `toString` methods from `AnyRef`
+  - NOTICE: apart from the `isEven` and `stringLength`, `Baz` is equivalent to `Foo`! `private val` is the same as no keywords here.
  */
 class Baz(private val i: Int, private val s: String) {
   val isEven = i % 2 == 0
@@ -55,6 +62,12 @@ bar.i
 bar.s
 bar.s = "abc"
 bar.s
+
+val foobar = new Foobar(2)
+foobar.i
+foobar.s
+foobar.s = "abc"
+foobar.s
 
 val baz = new Baz(3, "ghi")
 // can't access the constructor fields
