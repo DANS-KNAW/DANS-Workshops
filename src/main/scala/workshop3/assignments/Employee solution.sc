@@ -1,6 +1,6 @@
 // translated from https://github.com/frode-carlsen/scala-workshop/blob/master/scala-workshop/src/main/scala/oppgave6/FP.scala
 
-sealed trait Employee
+sealed abstract class Employee
 case class Developer(name: String, salary: Int) extends Employee
 case class Manager(name: String, salary: Int, title: String) extends Employee
 
