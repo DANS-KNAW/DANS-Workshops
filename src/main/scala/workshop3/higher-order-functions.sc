@@ -134,3 +134,10 @@ count("abcdef", (c: Char) => true)
 count("abcdef", _ == 'a')
 count("abcdef", c => c == 'b' || c == 'c')
 count("abcdef", _ => true)
+
+/*
+  Final note: the function we have defined is also present in the Scala API and does exactly the same!
+ */
+"abcdef".count(_ == 'a')
+"abcdef".count(c => c == 'b' || c == 'c')
+"abcdef".count(_ => true) // which is equal to "abcdef".length

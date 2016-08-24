@@ -1,0 +1,41 @@
+Content of this workshop:
+ [v] higher-order functions
+ [v] basic functional operators
+ [v] Option
+     - function that may return a null-pointer, see https://www.youtube.com/watch?v=Mw_Jnn_Y5iA
+     - (higher-order) functions on Option
+     - met introductie flatMap/for-comprehension
+     - vertalen van en naar flatMap/map/filter; misschien ook gebruik maken van JavaP/ScalaC (http://alvinalexander.com/scala/how-to-disassemble-decompile-scala-source-code-javap-scalac-jad)
+ [ ] Try
+     - function that my throw an exception
+     - (higher-order) functions on Try
+     - partial functions
+ [ ] Seq/List/Map/<other collections>
+     - Java vs. Scala
+     - map/filter/fold/foreach al besproken
+     v flatMap
+     - andere (hogere orde) functions op List zoals drop(While), forall, partition, slice, span, take(While), zip(WithIndex)
+     - afwijkende operators op Map
+ [ ] follow the types
+
+Assignments:
+ [v] Employee (higher-order functions refactoring)
+ [ ] Refactor a peace of imperative code to a for-comprehension
+     + http://nerd.kelseyinnis.com/blog/2013/11/12/idiomatic-scala-the-for-comprehension/
+     v Option
+     v List
+     - Try
+ [ ] Animals (Map/Option)
+ [ ] Lange chain van operators met verschillende soorten operators door elkaar, ook die niet aan bod gekomen zijn
+ [ ] Andere opgaven met Try/Option/List/...
+ [ ] Implement operators in terms of folds (size, filter, map; zie paper Erik Meijer)
+ [ ] Tree Monad (John Hughes - http://www.cse.chalmers.se/~rjmh/OPLSS/Exercises.pdf)
+     - map
+     - flatMap
+     - zipTree
+     - https://github.com/rvanheest/Experiments/blob/monadics-libs/Monadics/src/main/scala/monadics/instances/Tree.scala
+
+Bonus assignments:
+ [ ] Implement the State Monad
+ [ ] Implement the Continuation Monad [special case of (T -> ()) -> ()] of FP101x-lab5
+ [ ] Implement foldLeft in terms of foldRight
