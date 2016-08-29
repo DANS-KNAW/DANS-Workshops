@@ -10,3 +10,5 @@
 * TODO: try assignment
 * [Animals](Animals.md)
     * [solution](Animals-solution.sc)
+* [FileIO](FileIO.md)
+    * [solution](FileIOSolution.scala)
