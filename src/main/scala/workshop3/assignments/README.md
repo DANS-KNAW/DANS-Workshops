@@ -12,3 +12,5 @@
     * [solution](Animals-solution.sc)
 * [FileIO](FileIO.md)
     * [solution](FileIOSolution.scala)
+* [Operators as folds](OperatorsAsFolds.md)
+    * [solution](OperatorsAsFoldsSolution.scala)

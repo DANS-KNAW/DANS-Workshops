@@ -6,11 +6,7 @@ import resource.{ManagedResource, Using}
 
 import scala.io.Source
 
-case class Customer(id: String, firstName: String, lastName: String)
-case class Product(id: String, title: String, price: Double)
-case class Order(productId: String, customerId: String, amount: Int)
-
-object ReadWrite extends App {
+object FileIOSolution extends App {
 
   val customerFile = new File(getClass.getResource("/workshop3/customer.csv").toURI)
   val orderFile = new File(getClass.getResource("/workshop3/order.csv").toURI)
@@ -102,7 +98,8 @@ object ReadWrite extends App {
   } yield generateReports(cIn, pIn, oIn)
 
   val reportWriting: ManagedResource[Unit] = for {
-    (report1, report2) <- reports
+    rs <- reports
+    (report1, report2) = rs
     r1 <- Using.fileWriter()(report1File)
     r2 <- Using.fileWriter()(report2File)
   } yield {

@@ -1,0 +1,6 @@
+#Operators as folds
+
+Given is a number of operators that are usually defined on `List` and any other collection. Define these operators in terms of `foldLeft` or `foldRight`.
+Hint: follow the types and let your IDE be your friend!
+
+Side note: in a more mathematical sense, `foldRight` is often referred to as a *catamorphisms*. See [page 3 of this paper](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf) for examples of how to implement the operators in this assignment.

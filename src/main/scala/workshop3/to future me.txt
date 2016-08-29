@@ -27,9 +27,9 @@ Assignments:
      v List
      - Try
  [v] Animals (Map/Option)
- [ ] Lange chain van operators met verschillende soorten operators door elkaar, ook die niet aan bod gekomen zijn
- [ ] Andere opgaven met Try/Option/List/...
- [ ] Implement operators in terms of folds (size, filter, map, forall, exists, reverse; zie paper Erik Meijer)
+ [x] Lange chain van operators met verschillende soorten operators door elkaar, ook die niet aan bod gekomen zijn
+ [x] Andere opgaven met Try/Option/List/...
+ [v] Implement operators in terms of folds (size, filter, map, forall, exists, reverse; zie paper Erik Meijer)
  [v] Resource monad (Scala ARM library)
      - Lees van meerdere files
      - Schrijf naar meerdere files
