@@ -7,3 +7,5 @@
     * [solution](Dinner-solution.sc)
 * [Postcard](Postcard.md)
     * [solution](Postcard-solution.sc)
+* TODO: try assignment
+* [Animals](Animals.md)
