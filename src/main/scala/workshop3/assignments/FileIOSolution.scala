@@ -15,33 +15,31 @@ object FileIOSolution extends App {
   val report1File = new File("report1.txt")
   val report2File = new File("report2.txt")
 
-  def read[T](in: InputStream)(transform: String => T): List[T] = {
+  def read[T](in: InputStream)(transform: Array[String] => T): List[T] = {
     Source.fromInputStream(in)
       .getLines()
       .drop(1)
+      .map(_.split(','))
       .map(transform)
       .toList
   }
 
   def readCustomers(in: InputStream): List[Customer] = {
-    read(in)(line => {
-      val Array(id, first, last) = line.split(',')
-      Customer(id, first, last)
-    })
+    read(in) {
+      case Array(id, first, last) => Customer(id, first, last)
+    }
   }
 
   def readProducts(in: InputStream): List[Product] = {
-    read(in)(line => {
-      val Array(id, title, price) = line.split(',')
-      Product(id, title, price.toDouble)
-    })
+    read(in) {
+      case Array(id, title, price) => Product(id, title, price.toDouble)
+    }
   }
 
   def readOrders(in: InputStream): List[Order] = {
-    read(in)(line => {
-      val Array(product, customer, amount) = line.split(',')
-      Order(product, customer, amount.toInt)
-    })
+    read(in) {
+      case Array(product, customer, amount) => Order(product, customer, amount.toInt)
+    }
   }
 
   def report1(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] = {
