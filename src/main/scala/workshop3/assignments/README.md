@@ -9,7 +9,10 @@
     * [solution](Postcard-solution.sc)
 * [Animals](Animals.md)
     * [solution](Animals-solution.sc)
-* [FileIO](FileIO.md)
-    * [solution](FileIOSolution.scala)
 * [Implement the operators](ImplementTheOperators.md)
     * [solution](ImplementTheOperatorsSolution.scala)
+* [FileIO](FileIO.md)
+    * [solution](FileIOSolution.scala)
+
+##Bonus assignments
+* [Tree](Tree.md)
