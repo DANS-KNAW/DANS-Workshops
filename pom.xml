@@ -34,6 +34,7 @@
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <testResources><testResource><directory>src/test/resources</directory></testResource></testResources>
         <resources><resource><directory>src/main/resources</directory></resource></resources>
         <plugins>
             <plugin>

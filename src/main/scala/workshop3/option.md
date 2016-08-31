@@ -14,6 +14,8 @@ def makeStringOfLength(n: Int): String = {
 }
 ```
 
+**Side note**: `x` in the code snippet above is a `String` and it has an operator `*` defined on it, which concatenates `x` a certain number of times to itself. `x * 3` would result in `abcdefabcdefabcdef`. The `take` operator on the other hand takes the first `n` characters in a `String` and discards the others. `x.take(3)` would result in `abc`.
+
 To use this function we always need to check for a potential null pointer. Notice, however, that this is not specified in the type of this function, which is `Int => String`. Unless the function is well documented or you have access to the source code, you do not have any clue as to when (or if) it can possibly return a null.
 
 ```scala
@@ -51,7 +53,7 @@ Option(5).map(x => x + 1)
 Option.empty[Int].map(x => x + 1)
 ```
 
-All other higher order functions on `Option` work in the same way. Have a look at the source code yourself at https://github.com/scala/scala/blob/2.12.x/src/library/scala/Option.scala to see how this is all implemented.
+All other higher order functions on `Option` work in the same way. Have a look at the [source code](https://github.com/scala/scala/blob/2.12.x/src/library/scala/Option.scala) yourself at to see how this is all implemented.
 
 The refactored function above can be used as before, but now using the higher-order functions that are defined on `Option`:
 

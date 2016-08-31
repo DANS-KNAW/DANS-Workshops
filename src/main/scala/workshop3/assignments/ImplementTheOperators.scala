@@ -16,3 +16,12 @@ object OperatorsAsFolds {
 
   def find[T](list: List[T])(predicate: T => Boolean): Option[T] = ???
 }
+
+object SomeOtherImplementations {
+
+  def map[A, B](list: List[A])(f: A => B): List[B] = ???
+
+  def runningSum(list: List[Int]): List[Int] = ???
+
+  def runningAverage(list: List[Double], n: Int): List[Double] = ???
+}

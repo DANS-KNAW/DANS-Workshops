@@ -1,5 +1,7 @@
 package workshop3.assignments
 
+import scala.collection.immutable.Queue
+
 object OperatorsAsFoldsSolution {
 
   def size[T](list: List[T]): Int = {
@@ -32,5 +34,29 @@ object OperatorsAsFoldsSolution {
       case (None, _) => None
       case (s@Some(_), _) => s
     }
+  }
+}
+
+object SomeOtherImplementations {
+
+  def map[A, B](list: List[A])(f: A => B): List[B] = {
+    list.flatMap(a => List(f(a)))
+  }
+
+  def runningSum(list: List[Int]): List[Int] = {
+    list.scan(0)(_ + _).drop(1)
+  }
+
+  def runningAverage(list: List[Double], n: Int): List[Double] = {
+    list.scanLeft(Queue.empty[Double])((queue, d) => {
+      if (queue.length == n) {
+        val (_, q) = queue.dequeue
+        q.enqueue(d)
+      }
+      else
+        queue.enqueue(d)
+    })
+      .drop(1) // you don't need the first empty queue (seed value)
+      .map(queue => queue.sum / queue.size)
   }
 }

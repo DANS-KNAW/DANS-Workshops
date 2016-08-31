@@ -14,11 +14,7 @@ val tuplesFC = for {
 } yield (x, y)
 ```
 
-For-comprehensions in general (so, this not only applies to `List`, but also to `Option` and other
-  types that have `flatMap` implemented) can also be used to write queries with `filter` (called
-  a '*guard*'). This is done using an if statement as shown below. Note here that this is NOT an
-  if/else statement, but only to filter elements that satisfy the predicate! Also note that you
-  don't use parentheses here, unlike the if/else statement.
+For-comprehensions in general (so, this not only applies to `List`, but also to `Option` and other types that have `flatMap` implemented) can also be used to write queries with `filter` (called a '*guard*'). This is done using an if statement as shown below. Note here that this is NOT an if/else statement, but only to filter elements that satisfy the predicate! Also note that you don't use parentheses here, unlike the if/else statement.
 
 ```scala
 def factors(n: Int) = (1 to n).filter(x => n % x == 0)

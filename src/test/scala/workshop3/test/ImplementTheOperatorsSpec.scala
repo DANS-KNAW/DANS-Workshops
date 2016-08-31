@@ -2,8 +2,9 @@ package workshop3.test
 
 import org.scalatest.{FlatSpec, Matchers}
 import workshop3.assignments.{OperatorsAsFolds => folds}
+import workshop3.assignments.{SomeOtherImplementations => others}
 
-class OperatorsAsFoldsSpec extends FlatSpec with Matchers {
+class ImplementTheOperatorsSpec extends FlatSpec with Matchers {
 
   val emptyList = List.empty[Int]
   val oneElemList = List(1)
@@ -118,5 +119,45 @@ class OperatorsAsFoldsSpec extends FlatSpec with Matchers {
 
   it should "return the last element satisfying the predicate if the list is reversed first" in {
     folds.find(folds.reverse(list))(isEven) shouldBe Some(4)
+  }
+
+  "map" should "(implemented using flatMap) return an empty list if the input is empty" in {
+    others.map(emptyList)(timesTwo) shouldBe empty
+  }
+
+  it should "(implemented using flatMap) return a list with one element (doubled) with an input of size 1" in {
+    others.map(oneElemList)(timesTwo) shouldBe List(2)
+  }
+
+  it should "(implemented using flatMap) return a list with all elements doubled" in {
+    others.map(list)(timesTwo) shouldBe List(2, 4, 6, 8, 10)
+  }
+
+  "runningSum" should "return an empty list if the input is empty" in {
+    others.runningSum(emptyList) shouldBe empty
+  }
+
+  it should "return a list with one element with an input of size 1 and this element should be the same as the input" in {
+    others.runningSum(oneElemList) shouldBe oneElemList
+  }
+
+  it should "return a list with the sums of all input elements" in {
+    others.runningSum(list) shouldBe List(1, 3, 6, 10, 15)
+  }
+
+  "runningAverage" should "return an empty list if the input is empty" in {
+    others.runningAverage(List.empty[Double], 2) shouldBe empty
+  }
+
+  it should "return a the same list as the input if the input size is 1" in {
+    others.runningAverage(List(1.0), 2) shouldBe List(1.0)
+  }
+
+  it should "return the same list as the input if the number of elements to average over is 1" in {
+    others.runningAverage(List(1.0, 2.0, 3.0, 4.0), 1) shouldBe List(1.0, 2.0, 3.0, 4.0)
+  }
+
+  it should "return the list of averages if the number of elements to average over is larger than 1" in {
+    others.runningAverage((1 to 10).map(_.toDouble).toList, 2) shouldBe List(1.0, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5)
   }
 }

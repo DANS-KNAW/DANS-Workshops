@@ -7,10 +7,9 @@
     * [solution](Dinner-solution.sc)
 * [Postcard](Postcard.md)
     * [solution](Postcard-solution.sc)
-* TODO: try assignment
 * [Animals](Animals.md)
     * [solution](Animals-solution.sc)
 * [FileIO](FileIO.md)
     * [solution](FileIOSolution.scala)
-* [Operators as folds](OperatorsAsFolds.md)
-    * [solution](OperatorsAsFoldsSolution.scala)
+* [Implement the operators](ImplementTheOperators.md)
+    * [solution](ImplementTheOperatorsSolution.scala)
