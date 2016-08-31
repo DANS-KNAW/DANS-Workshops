@@ -1,4 +1,4 @@
-package workshop3.assignments
+package workshop3.assignments.solutions
 
 import scala.util.{Failure, Success, Try}
 

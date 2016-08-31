@@ -1,4 +1,4 @@
-package workshop3.assignments
+package workshop3.assignments.solutions
 
 import scala.collection.immutable.Queue
 
@@ -37,7 +37,7 @@ object OperatorsAsFoldsSolution {
   }
 }
 
-object SomeOtherImplementations {
+object SomeOtherImplementationsSolution {
 
   def map[A, B](list: List[A])(f: A => B): List[B] = {
     list.flatMap(a => List(f(a)))

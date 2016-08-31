@@ -1,18 +1,19 @@
 #Assignments workshop 3
 
 * [Employee](Employee.md)
-    * [solution](Employee-solution.sc)
-    * [refactored solution](Employee-solution-refactored.sc)
+    * [solution](solutions/Employee-solution.sc)
+    * [refactored solution](solutions/Employee-solution-refactored.sc)
 * [Dinner](Dinner.md)
-    * [solution](Dinner-solution.sc)
+    * [solution](solutions/Dinner-solution.sc)
 * [Postcard](Postcard.md)
-    * [solution](Postcard-solution.sc)
+    * [solution](solutions/Postcard-solution.sc)
 * [Animals](Animals.md)
-    * [solution](Animals-solution.sc)
+    * [solution](solutions/AnimalsSolution.scala)
 * [Implement the operators](ImplementTheOperators.md)
-    * [solution](ImplementTheOperatorsSolution.scala)
+    * [solution](solutions/ImplementTheOperatorsSolution.scala)
 * [FileIO](FileIO.md)
-    * [solution](FileIOSolution.scala)
+    * [solution](solutions/FileIOSolution.scala)
 
 ##Bonus assignments
 * [Tree](Tree.md)
+    * [solution](solutions/TreeSolution.scala)

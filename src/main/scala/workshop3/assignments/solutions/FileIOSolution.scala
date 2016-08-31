@@ -1,8 +1,9 @@
-package workshop3.assignments
+package workshop3.assignments.solutions
 
 import java.io.{BufferedInputStream, BufferedWriter, File, InputStream}
 
 import resource.{ManagedResource, Using}
+import workshop3.assignments.{Customer, Order, Product}
 
 import scala.io.Source
 

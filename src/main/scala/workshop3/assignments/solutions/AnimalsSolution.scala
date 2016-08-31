@@ -1,10 +1,8 @@
-// translated from https://github.com/frode-carlsen/scala-workshop/blob/master/scala-workshop/src/main/scala/oppgave2/SultneDyr.scala
+package workshop3.assignments.solutions
 
-type Animal = String
-type Sound = String
-type Food = String
+import workshop3.assignments._
 
-class Animals(animalSays: Map[Animal, Sound], asksForFood: Map[Sound, Food]) {
+class AnimalsSolution(animalSays: Map[Animal, Sound], asksForFood: Map[Sound, Food]) {
 
   // returns an Option of the sound an animal makes
   def whatSays(animal: Animal): Option[Sound] = {
@@ -31,21 +29,3 @@ class Animals(animalSays: Map[Animal, Sound], asksForFood: Map[Sound, Food]) {
     whatEats(animal).map(_.toUpperCase)
   }
 }
-
-val animalSays = Map("Dog" -> "Woof", "Cat" -> "Meow", "Cow" -> "Mooh")
-val asksForFood = Map("Woof" -> "Meat", "Meow" -> "Fish", "Mooh" -> "Grass")
-val animals = new Animals(animalSays, asksForFood)
-
-animals.whatSays("Dog")
-animals.whatSays("Fish")
-
-animals.WHAT_SAYS("Dog")
-animals.WHAT_SAYS("Fish")
-
-animals.whatEats("Dog")
-animals.whatEats("Fish")
-
-animals.whatEat("Dog" :: "Cow" :: "Fish" :: "Cat" :: Nil)
-
-animals.WHAT_EATS("Dog")
-animals.WHAT_EATS("Fish")
