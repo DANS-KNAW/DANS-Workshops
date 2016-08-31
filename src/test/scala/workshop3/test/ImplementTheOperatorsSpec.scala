@@ -1,8 +1,7 @@
 package workshop3.test
 
 import org.scalatest.{FlatSpec, Matchers}
-import workshop3.assignments.{OperatorsAsFolds => folds}
-import workshop3.assignments.{SomeOtherImplementations => others}
+import workshop3.assignments.solutions.{OperatorsAsFoldsSolution => folds, SomeOtherImplementationsSolution => others}
 
 class ImplementTheOperatorsSpec extends FlatSpec with Matchers {
 

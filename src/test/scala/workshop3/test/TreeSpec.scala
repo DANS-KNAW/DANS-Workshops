@@ -1,7 +1,7 @@
 package workshop3.test
 
 import org.scalatest.{FlatSpec, Matchers}
-import workshop3.assignments.{Branch, Leaf}
+import workshop3.assignments.solutions.{Branch, Leaf}
 
 import scala.util.{Failure, Success}
 

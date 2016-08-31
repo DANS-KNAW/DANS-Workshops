@@ -1,7 +1,7 @@
 package workshop3.test
 
 import org.scalatest.{FlatSpec, Matchers}
-import workshop3.assignments.Animals
+import workshop3.assignments.solutions.{AnimalsSolution => Animals}
 
 class AnimalsSpec extends FlatSpec with Matchers {
 

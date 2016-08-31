@@ -4,11 +4,12 @@ import java.io.File
 
 import org.scalatest.{FlatSpec, Matchers, OneInstancePerTest}
 import resource.Using
-import workshop3.assignments.{Customer, FileIO, Order, Product}
+import workshop3.assignments.solutions.FileIOSolution
+import workshop3.assignments.{Customer, Order, Product}
 
 class FileIOSpec extends FlatSpec with Matchers with OneInstancePerTest {
 
-  val fileIO = FileIO
+  val fileIO = FileIOSolution
 
   "readCustomers" should "read a customer input and convert it to the appropriate objects" in {
     val file = new File(getClass.getResource("/workshop3/testcustomerinput.csv").toURI)
