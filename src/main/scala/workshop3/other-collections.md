@@ -49,3 +49,5 @@ In the previous sections we have discussed various operators on List, mainly `ma
 * `takeWhile(p: A => Boolean)` keeps all elements as long as they satisfy the predicate `p`
 * `zip(that: Iterable[B])` merges the collection pairwise with another collection `that` into a collections of tuples `(A, B)`
 * `zipWithIndex` combines the elements of the collection with their index, starting at 0
+
+Finally we refer to [this blog post](https://pavelfatin.com/scala-collections-tips-and-tricks/) for tips & tricks and some best practices regarding the use of the operators defined on collections, `Option` and `Try`.
