@@ -1,12 +1,11 @@
 #Assignments workshop 3
 
 * [Employee](Employee.md)
-    * [solution](solutions/Employee-solution.sc)
-    * [refactored solution](solutions/Employee-solution-refactored.sc)
+    * [solution](solutions/EmployeeSolution.scala)
 * [Dinner](Dinner.md)
-    * [solution](solutions/Dinner-solution.sc)
+    * [solution](solutions/DinnerSolution.scala)
 * [Postcard](Postcard.md)
-    * [solution](solutions/Postcard-solution.sc)
+    * [solution](solutions/PostcardSolution.scala)
 * [Animals](Animals.md)
     * [solution](solutions/AnimalsSolution.scala)
 * [Implement the operators](ImplementTheOperators.md)
