@@ -1,11 +1,11 @@
 #Assignments workshop 3
 
-* [Employee](Employee.md)
-* [Diner](Diner.md)
-* [Postcard](Postcard.md)
-* [Animals](Animals.md)
-* [FileIO](FileIO.md)
-* [Implement the operators](ImplementTheOperators.md)
+1. [Employee](Employee.md)
+2. [Diner](Diner.md)
+3. [Postcard](Postcard.md)
+4. [Animals](Animals.md)
+5. [FileIO](FileIO.md)
+6. [Implement the operators](ImplementTheOperators.md)
 
 ##Bonus assignments
-* [Tree](Tree.md)
+7. [Tree](Tree.md)
