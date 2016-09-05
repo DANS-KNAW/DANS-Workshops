@@ -132,6 +132,42 @@ class ImplementTheOperatorsSpec extends FlatSpec with Matchers {
     others.map(list)(timesTwo) shouldBe List(2, 4, 6, 8, 10)
   }
 
+  val f1 = (x: Int) => 2 * x
+  val f2 = (x: Int) => 3 * x
+  val f3 = f1 andThen f2
+
+  "apply" should "return an empty list when the first input is empty" in {
+    others.apply(Nil, List(f1)) shouldBe Nil
+  }
+
+  it should "return an empty list when the second input is empty" in {
+    others.apply(List(1, 2, 3), Nil) shouldBe Nil
+  }
+
+  it should "return an empty list when both inputs are empty" in {
+    others.apply(Nil, Nil) shouldBe Nil
+  }
+
+  it should "apply all functions in the second input to all elements in the first input (cross product)" in {
+    others.apply(List(1, 2, 3, 4), List(f1, f2, f3)) shouldBe List(2, 4, 6, 8, 3, 6, 9, 12, 6, 12, 18, 24)
+  }
+
+  "flatten" should "return the empty list when the input is empty" in {
+    others.flatten(Nil) shouldBe Nil
+  }
+
+  it should "return the empty list when the input contains empty lists only" in {
+    others.flatten(List(Nil, Nil, Nil)) shouldBe Nil
+  }
+
+  it should "return the concatenation of all lists in the input" in {
+    others.flatten(List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9))) shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  }
+
+  it should "return the concatenation of all lists in the input and discard the empty lists" in {
+    others.flatten(List(List(1, 2, 3), Nil, List(4, 5, 6))) shouldBe List(1, 2, 3, 4, 5, 6)
+  }
+
   "runningSum" should "return an empty list if the input is empty" in {
     others.runningSum(emptyList) shouldBe empty
   }

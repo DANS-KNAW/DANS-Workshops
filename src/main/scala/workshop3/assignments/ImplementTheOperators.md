@@ -10,6 +10,8 @@ Side note: in a more mathematical sense, `foldRight` is often referred to as a *
 Given the function definitions in `SomeOtherImplementations`
 
 * implement `map` in terms of `flatMap`
+* implement `apply` in terms of `flatMap` and `map`
+* implement `flatten` in terms of `flatMap`
 * implement `runningSum`
 * implement `runningAverage`
     * Hint: you need to maintain some state... which operator do you need for that?

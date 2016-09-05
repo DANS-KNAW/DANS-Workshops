@@ -21,6 +21,10 @@ object SomeOtherImplementations {
 
   def map[A, B](list: List[A])(f: A => B): List[B] = ???
 
+  def apply[A, B](list: List[A], fs: List[A => B]): List[B] = ???
+
+  def flatten[A](listOfLists: List[List[A]]): List[A] = ???
+
   def runningSum(list: List[Int]): List[Int] = ???
 
   def runningAverage(list: List[Double], n: Int): List[Double] = ???
