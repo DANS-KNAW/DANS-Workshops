@@ -75,7 +75,7 @@ object EmployeeSolution {
 }
 
 object EmployeeSolutionRefactored {
-  def transform[A](employee: Employee)(dev: Developer => A, man: Manager => A): A = {
+  def transform[A](dev: Developer => A, man: Manager => A)(employee: Employee): A = {
     employee match {
       case developer: Developer => dev(developer)
       case manager: Manager => man(manager)
@@ -96,7 +96,7 @@ object EmployeeSolutionRefactored {
 
   // returns the salary of the employee
   def salary(employee: Employee): Int = {
-    transform(employee)(_.salary, _.salary)
+    transform(_.salary, _.salary)(employee)
   }
 
   // returns the sum of all salaries
@@ -107,42 +107,36 @@ object EmployeeSolutionRefactored {
 
   // returns the name of the employee
   def name(employee: Employee): String = {
-    transform(employee)(_.name, _.name)
+    transform(_.name, _.name)(employee)
   }
 
   // returns the employee, but with the new salary
   def setSalary(salary: Int, employee: Employee): Employee = {
-    transform(employee)(changeDeveloperSalary(_ => salary),
-      changeManagerSalary(_ => salary))
+    transform(changeDeveloperSalary(_ => salary), changeManagerSalary(_ => salary))(employee)
   }
 
   // returns the employee, but with the increased salary
   def raiseSalary(increase: Int, employee: Employee): Employee = {
-    transform(employee)(changeDeveloperSalary(increaseByAmount(increase)),
-      changeManagerSalary(increaseByAmount(increase)))
+    transform(changeDeveloperSalary(increaseByAmount(increase)), changeManagerSalary(increaseByAmount(increase)))(employee)
   }
 
   // returns the list of employees, but with a raise for the manager's salary
   def raiseManagerSalaries(increase: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(transform(_)(identity,
-      changeManagerSalary(increaseByAmount(increase))))
+    employees.map(transform(identity, changeManagerSalary(increaseByAmount(increase))))
   }
 
   // returns the list of employees, but with a raise for the employee's salary
   def raiseDeveloperSalaries(increase: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(transform(_)(changeDeveloperSalary(increaseByAmount(increase)),
-      identity))
+    employees.map(transform(changeDeveloperSalary(increaseByAmount(increase)), identity))
   }
 
   // returns the list of employees, but with a percentage raise for the manager's salary
   def raiseManagerSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(transform(_)(identity,
-      changeManagerSalary(increaseByPercent(percent))))
+    employees.map(transform(identity, changeManagerSalary(increaseByPercent(percent))))
   }
 
   // returns the list of employees, but with a percentage raise for the employee's salary
   def raiseDeveloperSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(transform(_)(changeDeveloperSalary(increaseByPercent(percent)),
-      identity))
+    employees.map(transform(changeDeveloperSalary(increaseByPercent(percent)), identity))
   }
 }
