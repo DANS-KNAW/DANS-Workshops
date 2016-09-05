@@ -43,6 +43,14 @@ object SomeOtherImplementationsSolution {
     list.flatMap(a => List(f(a)))
   }
 
+  def apply[A, B](list: List[A], fs: List[A => B]): List[B] = {
+    fs.flatMap(f => list.map(a => f(a)))
+  }
+
+  def flatten[A](listOfLists: List[List[A]]): List[A] = {
+    listOfLists.flatMap(identity)
+  }
+
   def runningSum(list: List[Int]): List[Int] = {
     list.scan(0)(_ + _).drop(1)
   }
