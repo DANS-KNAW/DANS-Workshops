@@ -7,5 +7,5 @@
 5. [FileIO](FileIO.md)
 6. [Implement the operators](ImplementTheOperators.md)
 
-##Bonus assignments
+##Bonus assignment
 7. [Tree](Tree.md)
