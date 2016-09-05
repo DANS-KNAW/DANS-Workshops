@@ -134,28 +134,32 @@ Typical seed-function combinations are:
 In code:
 
 ```scala
-List(1, 2, 3, 4).foldLeft(0)(_ + _)  // or (i, sum) => i + sum
-List(1, 2, 3, 4).foldRight(0)(_ + _) // or (sum, i) => sum + i
+List(1, 2, 3, 4).foldLeft(0)(_ + _)  // or List(1, 2, 3, 4).foldLeft(0)((i, sum) => i + sum)
+List(1, 2, 3, 4).foldRight(0)(_ + _) // or List(1, 2, 3, 4).foldRight(0)((sum, i) => sum + i)
 
-List(1, 2, 3, 4).foldLeft(100)(_ - _)  // or (i, rest) => i - rest
-List(1, 2, 3, 4).foldRight(100)(_ - _) // or (rest, i) => rest - i
+List(1, 2, 3, 4).foldLeft(100)(_ - _)  // or List(1, 2, 3, 4).foldLeft(100)((i, rest) => i - rest)
+List(1, 2, 3, 4).foldRight(100)(_ - _) // or List(1, 2, 3, 4).foldRight(100)((rest, i) => rest - i)
 
-List(1, 2, 3, 4).foldLeft(1)(_ * _)  // or (i, prod) => i * prod
-List(1, 2, 3, 4).foldRight(1)(_ * _) // or (prod, i) => prod * i
+List(1, 2, 3, 4).foldLeft(1)(_ * _)  // or List(1, 2, 3, 4).foldLeft(1)((i, prod) => i * prod)
+List(1, 2, 3, 4).foldRight(1)(_ * _) // or List(1, 2, 3, 4).foldRight(1)((prod, i) => prod * i)
 
-List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldLeft(List[Int]())(_ ++ _)  // or (acc, list) => acc ++ list
-List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldRight(List[Int]())(_ ++ _) // (list, acc) => list ++ acc
+List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldLeft(List[Int]())(_ ++ _)  // or List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldLeft(List[Int]())((acc, list) => acc ++ list)
+List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldRight(List[Int]())(_ ++ _) // or List(List(1, 2, 3), List(4, 5, 6), List(7, 8, 9)).foldRight(List[Int]())((list, acc) => list ++ acc)
 
-List('a', 'b', 'c', 'd').foldLeft("")(_ + _)  // or (str, c) => str + c
-List('a', 'b', 'c', 'd').foldRight("")(_ + _) // or (c, str) => c + str
+List('a', 'b', 'c', 'd').foldLeft("")(_ + _)  // or List('a', 'b', 'c', 'd').foldLeft("")((str, c) => str + c)
+List('a', 'b', 'c', 'd').foldRight("")(_ + _) // or List('a', 'b', 'c', 'd').foldRight("")((c, str) => c + str)
 
 List('a', 'b', 'c', 'd').foldLeft(0)((count, _) => count + 1)
 List('a', 'b', 'c', 'd').foldRight(0)((_, count) => count + 1)
 ```
 
-Notice that the result of subtraction is the same for `foldLeft` and `foldRight`, but execution follows a different path
-in each case. To see what's going on we can add some `println` statements to the code. Note the order in which the operations 
-are done, starting from the left vs starting from the right.
+The `_ + _` is just an abbriviation of the longer version of `(i, sum) => i + sum`. When using multiple underscores to access
+function parameters without naming them, each underscore represents the next parameter in order.
+
+Notice that the results of these expressions are the same, no matter the use of `foldLeft` or `foldRight`, except for *subtraction*.
+This is because subtraction is not associative: `x - y` is not equal to `y - x` in general. To see what is going on, we can add
+some `println` statements to the code. Note the order in which the operations are done, starting from the left versus starting
+from the right.
 
 ```scala
 List(1, 2, 3, 4)
@@ -164,7 +168,7 @@ List(1, 2, 3, 4)
     println(s"  i    = $i")
     println(s"  rest = $rest")
 
-    val res = rest - i
+    val res = rest - i          // Notice the order of subtraction!
     println(s"  res = rest - i = $rest - $i = $res")
 
     res
@@ -176,7 +180,7 @@ List(1, 2, 3, 4)
     println(s"  rest = $rest")
     println(s"  i    = $i")
 
-    val res = rest - i
+    val res = i - rest          // Notice the order of subtraction!
     println(s"  res = rest - i = $rest - $i = $res")
 
     res
@@ -228,7 +232,7 @@ the next parameter in order, that is why you can only use them once!)
 
 In case of an empty input list, these operators throw an exception, as they cannot return anything else. 
 To fix this, Scala has a variant on this, which returns an `Option[B]` instead. If the input is empty, 
-a `None` is returned, else the result is returned, wrapped in a `Some`.
+a `None` is returned, else the result is returned, wrapped in a `Some`. We will discuss `Option`s in the next section.
 
 ```scala
 def reduceLeftOption[B >: A](op: (B, A) => B): Option[B]
