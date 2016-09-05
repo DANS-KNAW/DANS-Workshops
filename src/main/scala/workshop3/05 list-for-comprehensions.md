@@ -1,6 +1,8 @@
-# List and for-comprehensions
+List and for-comprehensions
+===========================
 
-In the same way as we use `flatMap` on `Option`, we can use it on `List` as well. For example, if we want a list with tuples of all combinations of elements of two lists, we write:
+In the same way as we use `flatMap` on `Option`, we can use it on `List` as well. For example, if we want a list with tuples of 
+all combinations of elements of two lists, we write:
 
 ```scala
 val xs = List(1, 2, 3, 4)
@@ -14,7 +16,10 @@ val tuplesFC = for {
 } yield (x, y)
 ```
 
-For-comprehensions in general (so, this not only applies to `List`, but also to `Option` and other types that have `flatMap` implemented) can also be used to write queries with `filter` (called a '*guard*'). This is done using an if statement as shown below. Note here that this is NOT an if/else statement, but only to filter elements that satisfy the predicate! Also note that you don't use parentheses here, unlike the if/else statement.
+For-comprehensions in general (so, this not only applies to `List`, but also to `Option` and other types that have `flatMap` 
+implemented) can also be used to write queries with `filter` (called a '*guard*'). This is done using an if statement as shown 
+below. Note here that this is NOT an if/else statement, but only to filter elements that satisfy the predicate! Also note that 
+you don't use parentheses here, unlike the if/else statement.
 
 ```scala
 def factors(n: Int) = (1 to n).filter(x => n % x == 0)
@@ -29,7 +34,9 @@ factors(5)
 factorsFC(5)
 ```
 
-If you want to keep the list intact rather than draw from it using the `<-`, you can use an `=`. In the following example we use this to get all prime numbers from a list.
+If you want to keep the list intact rather than draw from it using the `<-`, you can use an `=`. In the following example we 
+use this to get all prime numbers from a list.
+
 * `x <- xs`                         we take each number from the input list
 * `allFactors = factors(x)`         calculate all the dividers of a number;
                                     keep the list intact; do not draw from the list!
