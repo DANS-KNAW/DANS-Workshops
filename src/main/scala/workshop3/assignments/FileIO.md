@@ -18,9 +18,8 @@ into two separate files.
 * `report1.txt` will contain text formatted as follows: `<customer_name> wants <order_amount>x <product_name>`
 * `report2.txt` will contain text formatted as follows: `<customer_name> has to pay <total_price>`
 
-To read from file and write to file, we use the *Scala-ARM* library to do automatic resource management. Since this l
-ibrary defines `map` and `flatMap` on its resources, you can use this in a for-comprehension (which you are going to 
-do later in this assignment).
+To read from file and write to file, we use the *Scala-ARM* library to do automatic resource management. Since this library
+defines `map` and `flatMap` on its resources, you can use this in a for-comprehension (which you are going to do later in this assignment).
 
 In order to keep things simple, the assignment is split into various subtasks.
 

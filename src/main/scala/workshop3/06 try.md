@@ -6,6 +6,7 @@ In Java you have to state explicitly that a certain method can throw an exceptio
 either propagating it up the stack (rethrowing) or catching it and providing an alternative value.
 
 ```java
+// this is Java code!
 public static void foo throws Exception {
     throw new Exception();
 }
@@ -32,11 +33,10 @@ The compiler cannot check whether an error can occur somewhere and is therefore 
 def foo: Unit = {
     throw new Exception()
 }
-
-// if this method is not documented properly and/or you don't have access
-// to the source code, you will only find out at runtime that this function
-// throws an Exception. This is not visible in the return type!
 ```
+
+If this method is not documented properly and/or you don't have access to the source code, you will only find out at
+runtime that this function throws an `Exception`. This is not visible in the return type!
 
 Scala instead provides a technique that is quite similar to its `Option` type. Whereas this type denoted the possibility 
 of returning a `null`, a `Try` type expresses the possibility of returning an `Exception` instead of an actual value.

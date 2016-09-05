@@ -49,7 +49,7 @@ None      == Option.empty
 With this we can refactor the function above to return an `Option[String]` instead.
 
 ```scala
-def makeStringOfLength2(n: Int): Option[String] = {
+def makeStringOfLength(n: Int): Option[String] = {
   if (n <= 0) Option.empty
   else {
     val x = "abcdef"
@@ -69,6 +69,8 @@ Option(5).map(x => x + 1)
 Option.empty[Int].map(x => x + 1)
 ```
 
+**Sidenote:** in this case the explicit type inside the `Option.empty` needs to be written because the compiler cannot figure out the type by itself. In most cases the compiler can derive this from the surrounding context (return types, etc.). However, in this case there is no context to derive this from, so we need to state the type ourselves.
+
 All other higher order functions on `Option` work in the same way. Have a look at the 
 [source code](https://github.com/scala/scala/blob/2.12.x/src/library/scala/Option.scala) yourself to see how this is 
 all implemented.
@@ -76,14 +78,14 @@ all implemented.
 The refactored function above can be used as before, but now using the higher-order functions that are defined on `Option`:
 
 ```scala
-makeStringOfLength2(8).map(s => s.reverse).foreach(println)
+makeStringOfLength(8).map(s => s.reverse).foreach(println)
 ```
 
 Alternatively, we could use pattern matching. Verify for yourself that this is actually the same as using the higher-order 
 functions above and that these higher-order functions do the pattern matching for you! 
 
 ```scala
-makeStringOfLength2(8) match {
+makeStringOfLength(8) match {
   case Some(string) => println(string.reverse)
   case None => // do nothing
 }
@@ -97,7 +99,7 @@ Verify for yourself that this is equivalent to the previous implementation.
 * why doesn't the result (`x * (i / x.length) + x.take(i % x.length)`) need to be wrapped in `Option`?
 
 ```scala
-def makeStringOfLength3(n: Int): Option[String] = {
+def makeStringOfLength(n: Int): Option[String] = {
   Option(n)
     .filter(_ > 0)
     .map(i => {
@@ -116,7 +118,7 @@ In this operator you give a default value which will be returned instead if the 
 
 ```scala
 Option(5).get             // returns 5
-//Option.empty.get        // throws an exception
+Option.empty.get          // throws an exception
 Option(5).getOrElse(2)    // returns 5
 Option.empty.getOrElse(2) // returns 2
 ```

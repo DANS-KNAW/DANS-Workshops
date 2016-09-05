@@ -111,8 +111,7 @@ right to left. To do so (in both cases), these operators take two parameters:
 
 The aggregator function is first applied to the seed value and the first (`foldLeft`) or last (`foldRight`) element of the list, then
 the result of that is applied to the next value, etc. The final result is the result of the last application of the aggregator.
-The following pictures, taken from Wikipedia depict this process. Not the execution in both cases proceeds from the bottom of the
-to the top.
+The following pictures, taken from Wikipedia, depict this process. Note that execution in both cases proceeds from the bottom to the top.
 
 [`foldLeft`]: http://www.scala-lang.org/api/current/index.html#scala.collection.Traversable@foldLeft[B](z:B\)\(op:\(B,A\)=%3EB):B
 [`foldRight`]: http://www.scala-lang.org/api/current/index.html#scala.collection.Traversable@foldRight[B](z:B\)\(op:\(A,B\)=%3EB):B

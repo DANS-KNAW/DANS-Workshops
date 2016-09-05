@@ -70,8 +70,10 @@ If we want to get the `String` from a `Foo`, we can try to apply the same trick 
 What we end up with, however, is not what we wanted: `Option[Option[String]`. Now we got two `Option`s nested 
 before we have the `String`. Both `Option`s denote the fact that the value inside could potentially be a `null`.
 Of course we can do with only one `Option` and therefore we can flatten the `Option[Option[String]]` 
-into an `Option[String]` by using `flatMap` instead of `map`. This operator first maps a value inside an `Option` 
+into an `Option[String]` by using [`flatMap`] instead of `map`. This operator first maps a value inside an `Option` 
 to another `Option` (this results in an `Option[Option[T]]`) and then flattens it to end up with an `Option[T]`.
+
+[`flatMap`]: http://www.scala-lang.org/api/current/index.html#scala.Option@flatMap[B](f:A=>Option[B]):Option[B]
 
 ```scala
 def computeFooWRONG(foo: Foo): Option[Option[String]] = {

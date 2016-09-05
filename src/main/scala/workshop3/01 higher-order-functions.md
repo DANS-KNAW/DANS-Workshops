@@ -3,7 +3,7 @@ Higher-order functions
 
 Suppose you are asked to implement a function that counts the number of characters in a string 
 (without using `String.length` or `String.size`). An imperative way of doing this (note: we are not 
-doing functional programming yet!) would be to iterate over the String with a for-loop and 
+doing functional programming yet!) would be to iterate over the `String` with a for-loop and 
 incrementing an integer `count` in every cycle.
 
 ```scala
@@ -56,7 +56,7 @@ A great way to refactor these functions in this case is to write a **higher-orde
 [DRY]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 
 A higher-order function is a function that takes other functions as arguments or returns a function as result. This is different 
-from the functions above that just take 'normal' values as their arguments. A Higher-order function may look like this:
+from the functions above that just take 'normal' values as their arguments. A higher-order function may look like this:
 
 ```scala
 def name(f: I => O): X
@@ -133,7 +133,7 @@ the functions we defined above:
 ```
 
 Basically, you can think of these functions as the same functions as the ones before, but without 
-a name (hence: "anonymous")
+a name (hence: "anonymous").
 
 ```scala
 count("abcdef", (c: Char) => c == 'a')
