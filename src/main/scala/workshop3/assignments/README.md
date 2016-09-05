@@ -1,18 +1,20 @@
-#Assignments workshop 3
+Assignments workshop 3
+======================
 
-* [Employee](Employee.md)
+1. [Employee](Employee.md)
     * [solution](solutions/EmployeeSolution.scala)
-* [Dinner](Dinner.md)
+2. [Dinner](Dinner.md)
     * [solution](solutions/DinnerSolution.scala)
-* [Postcard](Postcard.md)
+3. [Postcard](Postcard.md)
     * [solution](solutions/PostcardSolution.scala)
-* [Animals](Animals.md)
+4. [Animals](Animals.md)
     * [solution](solutions/AnimalsSolution.scala)
-* [Implement the operators](ImplementTheOperators.md)
+5. [Implement the operators](ImplementTheOperators.md)
     * [solution](solutions/ImplementTheOperatorsSolution.scala)
-* [FileIO](FileIO.md)
+6. [FileIO](FileIO.md)
     * [solution](solutions/FileIOSolution.scala)
 
-##Bonus assignments
-* [Tree](Tree.md)
+Bonus assignment
+================
+7. [Tree](Tree.md)
     * [solution](solutions/TreeSolution.scala)

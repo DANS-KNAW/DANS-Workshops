@@ -23,4 +23,4 @@ Further reading/watching (totally optional)
 * [Learn You a Haskell for Great Good](http://learnyouahaskell.com/) - *For the ones that are really 
     interested in functional programming, this book is **the** place to start!*
 * [Scala Monads](https://youtu.be/Mw_Jnn_Y5iA) - *A good starter explanation of the `Option`, `Try` 
-    and `List` monads <sup>that shows remarkable similarities with our explanation :stuck_out_tongue_winking_eye:...</sup>*
+    and `List` monads <sup>that shows remarkable similarities with our explanation* :stuck_out_tongue_winking_eye:...</sup>

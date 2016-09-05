@@ -1,5 +1,5 @@
 Animals
--------
+=======
 
 Given are three type aliasses for `Animal`, `Sound` and `Food` (see `package.scala`). Also the 
 class `Animals` is defined. This class has a constructor with two parameters: a mapping from `Animal` 
