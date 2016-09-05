@@ -15,7 +15,7 @@ object PostcardSolution {
   def sendPostcardsFunctional: List[Postcard] = {
     travellers.map(traveller => s"$traveller (your favorite)")
       .flatMap(sender => relatives
-        .filter(relative => relative.startsWith("G"))
+        .withFilter(_.startsWith("G"))
         .flatMap(relative => cities
           .map(theCity => Postcard(s"Dear $relative, Wish you were here in $theCity! Love, $sender"))
         ))

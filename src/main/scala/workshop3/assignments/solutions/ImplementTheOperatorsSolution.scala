@@ -40,7 +40,7 @@ object OperatorsAsFoldsSolution {
 object SomeOtherImplementationsSolution {
 
   def map[A, B](list: List[A])(f: A => B): List[B] = {
-    list.flatMap(a => List(f(a)))
+    list.flatMap(f.andThen(List(_)))
   }
 
   def apply[A, B](list: List[A], fs: List[A => B]): List[B] = {
