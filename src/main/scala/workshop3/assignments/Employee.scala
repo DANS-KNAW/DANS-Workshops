@@ -21,15 +21,15 @@ object Employee {
 	// returns the employee, but with the increased salary
 	def raiseSalary(increase: Int, employee: Employee): Employee = ???
 
-	// returns the list of employees, but with a raise for the manager's salary
+	// returns the list of all employees, but with a raise for the manager's salary
 	def raiseManagerSalaries(increase: Int, employees: List[Employee]): List[Employee] = ???
 
-	// returns the list of employees, but with a raise for the employee's salary
+	// returns the list of all employees, but with a raise for the developer's salary
 	def raiseDeveloperSalaries(increase: Int, employees: List[Employee]): List[Employee] = ???
 
-	// returns the list of employees, but with a percentage raise for the manager's salary
+	// returns the list of all employees, but with a percentage raise for the manager's salary
 	def raiseManagerSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = ???
 
-	// returns the list of employees, but with a percentage raise for the employee's salary
+	// returns the list of all employees, but with a percentage raise for the developer's salary
 	def raiseDeveloperSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = ???
 }
