@@ -15,6 +15,5 @@ Assignments workshop 3
     * [solution](solutions/FileIOSolution.scala)
 
 Bonus assignment
-================
 7. [Tree](Tree.md)
     * [solution](solutions/TreeSolution.scala)
