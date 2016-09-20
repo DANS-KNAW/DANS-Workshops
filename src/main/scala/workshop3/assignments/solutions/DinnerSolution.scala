@@ -2,7 +2,7 @@ package workshop3.assignments.solutions
 
 import workshop3.assignments._
 
-abstract class HigherOrderDinner {
+trait DinnerIngredients {
 
   def getCharcoal: Option[Charcoal]
   def getLighterFluid: Option[LighterFluid]
@@ -10,6 +10,9 @@ abstract class HigherOrderDinner {
   def lightBBQ(c: Charcoal, lf: LighterFluid): Option[Fire]
   def seasonMeat(m: Meat): Option[Steak]
   def grill(s: Steak, f: Fire): Option[Dinner]
+}
+
+abstract class HigherOrderDinner extends DinnerIngredients {
 
   // this method never returns null!!!
   def orderPizza: Dinner = "I ordered a pizza"
@@ -25,14 +28,7 @@ abstract class HigherOrderDinner {
   }
 }
 
-abstract class DinnerWithForComprehension {
-
-  def getCharcoal: Option[Charcoal]
-  def getLighterFluid: Option[LighterFluid]
-  def getMeat: Option[Meat]
-  def lightBBQ(c: Charcoal, lf: LighterFluid): Option[Fire]
-  def seasonMeat(m: Meat): Option[Steak]
-  def grill(s: Steak, f: Fire): Option[Dinner]
+abstract class DinnerWithForComprehension extends DinnerIngredients {
 
   // this method never returns null!!!
   def orderPizza: Dinner = "I ordered a pizza"
@@ -49,4 +45,41 @@ abstract class DinnerWithForComprehension {
 
     possibleDinner.getOrElse(orderPizza)
   }
+}
+
+trait SuccessfulDinner extends DinnerIngredients {
+  def getCharcoal = Option("charcoal")
+
+  def getLighterFluid = Option("lighter fluid")
+
+  def getMeat = Option("meat")
+
+  def lightBBQ(c: Charcoal, lf: LighterFluid) = Option(s"$c and $lf")
+
+  def seasonMeat(m: Meat) = Option(s"seasoned $m")
+
+  def grill(s: Steak, f: Fire) = Option(s"grill $s on $f")
+}
+
+trait NoCharcoalDinner extends SuccessfulDinner {
+  override def getCharcoal = Option.empty
+}
+
+trait NoMeatDinner extends SuccessfulDinner {
+  override def getMeat = Option.empty
+}
+
+object DinnerSolution extends App {
+
+  // select one of the variants below to see the result
+
+  val dinner = new HigherOrderDinner with SuccessfulDinner
+//  val dinner = new HigherOrderDinner with NoCharcoalDinner
+//  val dinner = new HigherOrderDinner with NoMeatDinner
+
+//  val dinner = new DinnerWithForComprehension with SuccessfulDinner
+//  val dinner = new DinnerWithForComprehension with NoCharcoalDinner
+//  val dinner = new DinnerWithForComprehension with NoMeatDinner
+
+  println(dinner.prepareDinner)
 }

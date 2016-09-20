@@ -16,6 +16,8 @@ object FileIOSolution extends App {
   val report1File = new File("report1.txt")
   val report2File = new File("report2.txt")
 
+  // as all three files need to be read in the same way, we can give a general function `read`
+  // with a transformer function of type `Array[String] => T`
   def read[T](in: InputStream)(transform: Array[String] => T): List[T] = {
     Source.fromInputStream(in)
       .getLines()

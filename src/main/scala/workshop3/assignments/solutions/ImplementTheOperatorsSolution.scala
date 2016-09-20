@@ -17,10 +17,13 @@ object OperatorsAsFoldsSolution {
   }
 
   def forall[T](list: List[T])(predicate: T => Boolean): Boolean = {
+    // note the order of the `&&` here, first check `bool`, then do the calculation
+    // that way, if `bool == false` you don't have to call `predicate(elem)`
     list.foldLeft(true)((bool, elem) => bool && predicate(elem))
   }
 
   def exists[T](list: List[T])(predicate: T => Boolean): Boolean = {
+    // the same applied here with `||` as it did in the previous function with `&&`
     list.foldLeft(false)((bool, elem) => bool || predicate(elem))
   }
 
@@ -29,10 +32,11 @@ object OperatorsAsFoldsSolution {
   }
 
   def find[T](list: List[T])(predicate: T => Boolean): Option[T] = {
+    // note the order of pattern matching here: if you already found a result, just propagate it
     list.foldLeft(Option.empty[T]) {
+      case (s@Some(_), _) => s
       case (None, elem) if predicate(elem) => Option(elem)
       case (None, _) => None
-      case (s@Some(_), _) => s
     }
   }
 }

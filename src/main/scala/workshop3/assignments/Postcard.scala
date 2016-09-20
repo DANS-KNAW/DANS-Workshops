@@ -2,7 +2,7 @@ package workshop3.assignments
 
 case class Postcard(msg: String)
 
-object PostcardAssignment {
+object PostcardAssignment extends App {
 
 	val cities = List(
 		"San Francisco", "Los Angeles",
@@ -36,4 +36,38 @@ object PostcardAssignment {
 	def sendPostcardsFunctional: List[Postcard] = ???
 
 	def sendPostcardsForComprehension: List[Postcard] = ???
+
+	// tests:
+	println(
+		"""
+			|======================
+			| Imperative postcards
+			|======================
+			|""".stripMargin)
+	sendPostcardsImperative.foreach(println)
+
+	println(
+		"""
+			|======================
+			| Functional postcards
+			|======================
+			|""".stripMargin)
+	sendPostcardsFunctional.foreach(println)
+
+	println(
+		"""
+			|=============================
+			| For Comprehension postcards
+			|=============================
+			|""".stripMargin)
+	sendPostcardsForComprehension.foreach(println)
+
+	println(
+		"""
+			|=============
+			| Equivalence
+			|=============
+			|""".stripMargin)
+	println(s"imperative and functional have the same set of postcards: ${sendPostcardsImperative.toSet == sendPostcardsFunctional.toSet}")
+	println(s"imperative and for comprehension have the same set of postcards: ${sendPostcardsImperative.toSet == sendPostcardsForComprehension.toSet}")
 }

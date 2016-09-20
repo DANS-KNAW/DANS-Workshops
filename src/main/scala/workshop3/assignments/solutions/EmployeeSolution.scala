@@ -43,34 +43,34 @@ object EmployeeSolution {
 
   // returns the list of employees, but with a raise for the manager's salary
   def raiseManagerSalaries(increase: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(_ match {
+    employees.map {
       case Manager(name, salary, title) => Manager(name, salary + increase, title)
       case x => x
-    })
+    }
   }
 
   // returns the list of employees, but with a raise for the employee's salary
   def raiseDeveloperSalaries(increase: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(_ match {
+    employees.map {
       case Developer(name, salary) => Developer(name, salary + increase)
       case x => x
-    })
+    }
   }
 
   // returns the list of employees, but with a percentage raise for the manager's salary
   def raiseManagerSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(_ match {
+    employees.map {
       case Manager(name, salary, title) => Manager(name, (salary * (1 + percent / 100.0)).toInt, title)
       case x => x
-    })
+    }
   }
 
   // returns the list of employees, but with a percentage raise for the employee's salary
   def raiseDeveloperSalariesByPercent(percent: Int, employees: List[Employee]): List[Employee] = {
-    employees.map(_ match {
+    employees.map {
       case Developer(name, salary) => Developer(name, (salary * (1 + percent / 100.0)).toInt)
       case x => x
-    })
+    }
   }
 }
 
@@ -82,12 +82,12 @@ object EmployeeSolutionRefactored {
     }
   }
 
-  def changeDeveloperSalary(f: Int => Int) = {
-    (developer: Developer) => developer.copy(salary = f(developer.salary))
+  def changeDeveloperSalary(f: Int => Int)(developer: Developer) = {
+    developer.copy(salary = f(developer.salary))
   }
 
-  def changeManagerSalary(f: Int => Int) = {
-    (manager: Manager) => manager.copy(salary = f(manager.salary))
+  def changeManagerSalary(f: Int => Int)(manager: Manager) = {
+    manager.copy(salary = f(manager.salary))
   }
 
   def increaseByAmount(amount: Int)(current: Int) = current + amount

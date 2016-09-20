@@ -24,6 +24,18 @@ class AnimalsSolution(animalSays: Map[Animal, Sound], asksForFood: Map[Sound, Fo
     animals.map(animal => whatEats(animal).map(food => s"$animal eats $food").getOrElse(s"I don't know what $animal eats!"))
   }
 
+  // return a List of statements "<animal> says <sound> and eats <food>" based on the animals listed in the input.
+  def whatSaysAndEats(animals: List[Animal]): List[String] = {
+    animals.map(animal => {
+      val text = for {
+        sound <- whatSays(animal)
+        food <- whatEats(animal)
+      } yield s"$animal says '$sound' and eats $food"
+
+      text.getOrElse(s"I don't know what $animal says or eats!")
+    })
+  }
+
   // returns an Option of the food (in CAPITAL) an animal eats
   def WHAT_EATS(animal: Animal): Option[Food] = {
     whatEats(animal).map(_.toUpperCase)
