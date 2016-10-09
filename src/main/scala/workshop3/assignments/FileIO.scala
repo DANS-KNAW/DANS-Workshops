@@ -1,14 +1,39 @@
 package workshop3.assignments
 
-import java.io.{BufferedInputStream, BufferedWriter, File, InputStream}
+import java.io._
 
-import resource.ManagedResource
+import resource.{ManagedResource, Using}
 
-import scala.io.Source
+import scala.io.{BufferedSource, Source}
 
 case class Customer(id: String, firstName: String, lastName: String)
+
 case class Product(id: String, title: String, price: Double)
+
 case class Order(productId: String, customerId: String, amount: Int)
+
+/** a 'view' on the classes above, assuming customers have different names */
+case class OrderLine(amount: Int, price: Double, title: String, firstName: String, lastName: String)
+
+object OrderLine {
+  def apply(orders: List[Order], products: List[Product], customers: List[Customer]
+           ): List[OrderLine] = for {
+    order <- orders
+    customer = customers.find(customer => customer.id == order.customerId).get
+    product = products.find(product => order.productId == order.productId).get
+  } yield OrderLine(order.amount, product.price, product.title, customer.firstName, customer.lastName)
+}
+
+/** another view */
+case class LineTotal(firstName: String, lastName: String, total: Double)
+
+object LineTotal {
+  def apply(line: OrderLine): LineTotal =
+    LineTotal(line.firstName, line.lastName, line.amount * line.price)
+
+  def apply(orders: List[Order], products: List[Product], customers: List[Customer]): List[LineTotal] =
+    OrderLine(orders, products, customers).map(LineTotal(_))
+}
 
 object FileIO {
 
@@ -19,25 +44,68 @@ object FileIO {
   val report1File = new File("report1.txt")
   val report2File = new File("report2.txt")
 
-  def readCustomers(in: InputStream): List[Customer] = ???
+  def readCustomers(in: InputStream): List[Customer] = {
+    def create(l: Array[String]) = Customer(l(0), l(1), l(2))
+    read(in, create)
+  }
 
-  def readProducts(in: InputStream): List[Product] = ???
+  def readProducts(in: InputStream): List[Product] = {
+    def create(l: Array[String]) = Product(l(0), l(1), l(2).toDouble)
+    read(in, create)
+  }
 
-  def readOrders(in: InputStream): List[Order] = ???
+  def readOrders(in: InputStream): List[Order] = {
+    read(in, (l: Array[String]) => Order(l(0), l(1), l(2).toInt))
+  }
 
-  def report1(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] = ???
+  def read[T](in: InputStream, f: Array[String] => T): List[T] = {
+    new BufferedSource(in).getLines().toList.tail.map { line =>
+      f(line.split(","))
+    }
+  }
 
-  def report2(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] = ???
+  /** @return lines formatted as: <customer_name> wants <order_amount>x <product_name> */
+  def report1(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] =
+  OrderLine(orders, products, customers)
+    .map(line => s"${line.firstName} ${line.lastName} wants ${line.amount} x ${line.title}")
+
+  /** @return lines formatted as: <customer_name> has to pay <total_price> */
+  def report2(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] = {
+    for {
+      person <- LineTotal(orders, products, customers).groupBy(rec => (rec.firstName, rec.lastName))
+      (firstName, lastName) = person._1
+      total = person._2.map(_.total).sum
+    } yield s"$firstName $lastName has to pay $total"
+  }.toList
 
   def generateReports(customerInput: BufferedInputStream,
                       productInput: BufferedInputStream,
-                      orderInput: BufferedInputStream): (List[String], List[String]) = ???
+                      orderInput: BufferedInputStream): (List[String], List[String]) = {
+    val orders = readOrders(orderInput)
+    val products = readProducts(productInput)
+    val customers = readCustomers(customerInput)
+    val wants = report1(orders, products, customers)
+    val hasToPay = report2(orders, products, customers)
+    (wants, hasToPay)
+  }
 
-  def writeReport(report: List[String], output: BufferedWriter): Unit = ???
+  def writeReport(report: List[String], output: BufferedWriter): Unit =
+    output.write(report.mkString("\n"))
 
-  val reports: ManagedResource[(List[String], List[String])] = ???
+  val reports: ManagedResource[(List[String], List[String])] = for {
+    orders <- Using.fileInputStream(orderFile) //.acquireAndGet(FileIO.readOrders)
+    customers <- Using.fileInputStream(customerFile) //.acquireAndGet(FileIO.readCustomers)
+    products <- Using.fileInputStream(productFile) //.acquireAndGet(FileIO.readProducts)
+  } yield generateReports(customers, products, orders)
 
-  val reportWriting: ManagedResource[Unit] = ???
+  val reportWriting: ManagedResource[Unit] = for {
+    reps <- reports
+    (r1, r2) = reps
+    bos <- Using.bufferedOutputStream(System.out)
+    writer = new BufferedWriter(new PrintWriter(bos))
+    _ = writeReport(r1, writer)
+    _ = writeReport(r2, writer)
+  } yield ()
 
-  reportWriting.acquireAndGet(_ => println("done"))
+  //reportWriting.acquireAndGet(_ => println("done"))
 }
