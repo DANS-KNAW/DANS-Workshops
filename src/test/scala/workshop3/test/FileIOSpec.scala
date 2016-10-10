@@ -11,9 +11,8 @@ class FileIOSpec extends FlatSpec with Matchers with OneInstancePerTest {
 
   val fileIO = FileIOSolution
 
-  def managedInputStream(s: String): ManagedResource[BufferedInputStream] = {
+  def managedInputStream(s: String): ManagedResource[BufferedInputStream] =
     Using.fileInputStream(new File(getClass.getResource(s).toURI))
-  }
 
   "readCustomers" should "read a customer input and convert it to the appropriate objects" in {
     val customers = managedInputStream("/workshop3/testcustomerinput.csv").acquireAndGet(fileIO.readCustomers)
