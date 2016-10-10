@@ -82,10 +82,10 @@ object FileIOSolution extends App {
     val products = readProducts(productInput)
     val customers = readCustomers(customerInput)
 
-    val r1 = report1(orders, products, customers)
-    val r2 = report2(orders, products, customers)
+    val wants = report1(orders, products, customers)
+    val hasToPay = report2(orders, products, customers)
 
-    (r1, r2)
+    (wants, hasToPay)
   }
 
   def writeReport(report: List[String], output: BufferedWriter): Unit = {
@@ -93,10 +93,10 @@ object FileIOSolution extends App {
   }
 
   val reports: ManagedResource[(List[String], List[String])] = for {
-    cIn <- Using.fileInputStream(customerFile)
-    pIn <- Using.fileInputStream(productFile)
-    oIn <- Using.fileInputStream(orderFile)
-  } yield generateReports(cIn, pIn, oIn)
+    customers <- Using.fileInputStream(customerFile)
+    products <- Using.fileInputStream(productFile)
+    orders <- Using.fileInputStream(orderFile)
+  } yield generateReports(customers, products, orders)
 
   val reportWriting: ManagedResource[Unit] = for {
     rs <- reports
