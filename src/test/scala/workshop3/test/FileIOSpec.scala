@@ -49,12 +49,12 @@ class FileIOSpec extends FlatSpec with Matchers with OneInstancePerTest {
     val customers = mis("/workshop3/testcustomerinput.csv").acquireAndGet(FileIO.readCustomers)
     val report = FileIO.report1(orders, products, customers)
 
-    report shouldBe List(
-      "Alice Anderson wants 5 x product3",
+    report should contain theSameElementsAs List(
       "Alice Anderson wants 1 x product1",
-      "Chris Carlson wants 2 x product2",
-      "Bob Baboon wants 3 x product6",
+      "Alice Anderson wants 5 x product3",
       "Alice Anderson wants 1 x product6",
+      "Bob Baboon wants 3 x product6",
+      "Chris Carlson wants 2 x product2",
       "Chris Carlson wants 3 x product3")
   }
 
@@ -64,7 +64,7 @@ class FileIOSpec extends FlatSpec with Matchers with OneInstancePerTest {
     val customers = mis("/workshop3/testcustomerinput.csv").acquireAndGet(FileIO.readCustomers)
     val report = FileIO.report2(orders, products, customers)
 
-    report shouldBe List(
+    report should contain theSameElementsAs List(
       "Bob Baboon has to pay 2034.06",
       "Alice Anderson has to pay 2530.54",
       "Chris Carlson has to pay 1506.73")

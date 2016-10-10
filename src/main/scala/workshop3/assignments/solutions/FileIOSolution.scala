@@ -94,13 +94,15 @@ object FileIO {
     products <- Using.fileInputStream(productFile) //.acquireAndGet(FileIO.readProducts)
   } yield generateReports(customers, products, orders)
 
+  import resource._
   val reportWriting: ManagedResource[Unit] = for {
     reps <- reports
-    (r1, r2) = reps
-    w1 <- Using.fileWriter()(new File("target/report1.txt"))
-    w2 <- Using.fileWriter()(new File("target/report2.txt"))
-    _ = writeReport(r1, new BufferedWriter(w1))
-    _ = writeReport(r2, new BufferedWriter(w2))
+    writer1 <- managed(new FileWriter(new File("target/report1.txt")))
+    writer2 <- managed(new FileWriter(new File("target/report2.txt")))
+    bufferedWriter1 <- managed(new BufferedWriter(writer1))
+    bufferedWriter2 <- managed(new BufferedWriter(writer2))
+    _ = writeReport(reps._1, bufferedWriter1)
+    _ = writeReport(reps._2, bufferedWriter2)
   } yield ()
 
   reportWriting.acquireAndGet(_ => println("done"))
