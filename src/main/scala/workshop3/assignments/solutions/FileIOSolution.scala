@@ -16,7 +16,7 @@ object OrderLine {
            ): List[OrderLine] = for {
     order <- orders
     customer = customers.find(customer => customer.id == order.customerId).get
-    product = products.find(product => order.productId == order.productId).get
+    product = products.find(product => product.id == order.productId).get
   } yield OrderLine(order.amount, product.price, product.title, customer.firstName, customer.lastName)
 }
 
@@ -97,11 +97,11 @@ object FileIO {
   val reportWriting: ManagedResource[Unit] = for {
     reps <- reports
     (r1, r2) = reps
-    bos <- Using.bufferedOutputStream(System.out)
-    writer = new BufferedWriter(new PrintWriter(bos))
-    _ = writeReport(r1, writer)
-    _ = writeReport(r2, writer)
+    w1 <- Using.fileWriter()(new File("target/report1.txt"))
+    w2 <- Using.fileWriter()(new File("target/report2.txt"))
+    _ = writeReport(r1, new BufferedWriter(w1))
+    _ = writeReport(r2, new BufferedWriter(w2))
   } yield ()
 
-  // reportWriting.acquireAndGet(_ => println("done"))
+  reportWriting.acquireAndGet(_ => println("done"))
 }
