@@ -25,7 +25,7 @@ In order to keep things simple, the assignment is split into various subtasks.
 
 1. Implement the functions `readCustomers`, `readProducts` and `readOrders` that each take an `InputStream` and return 
    a `List` of `Customer`, `Product` and `Order` respectively. To read from the `InputStream`s, use `scala.io.Source.fromInputStream` 
-   and do some transformations with (higher-order) operators. You may assume that the input is not corrupted, so don't bother with 
+   and do some transformations with (higher-order) operators. You may assume that the input is not corrupted, so don't bather with 
    error handling and such things at this point. If the implementations are correct, the corresponding tests in `FileIOSpec` will pass.
 2. (optional) The three functions defined in (1) look quite similar. Can you refactor these three functions to call one function 
    `read` that abstracts over the common stuff? Make sure the tests still pass (you don't need to write extra tests, though). 
