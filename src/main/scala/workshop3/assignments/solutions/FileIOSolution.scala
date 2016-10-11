@@ -1,6 +1,6 @@
 package workshop3.assignments.solutions
 
-import java.io.{BufferedInputStream, BufferedWriter, File, InputStream}
+import java.io.{File, InputStream, Writer}
 
 import resource.{ManagedResource, Using}
 import workshop3.assignments.{Customer, Order, Product}
@@ -75,9 +75,9 @@ object FileIOSolution extends App {
       .toList
   }
 
-  def generateReports(customerInput: BufferedInputStream,
-                      productInput: BufferedInputStream,
-                      orderInput: BufferedInputStream): (List[String], List[String]) = {
+  def generateReports(customerInput: InputStream,
+                      productInput: InputStream,
+                      orderInput: InputStream): (List[String], List[String]) = {
     val orders = readOrders(orderInput)
     val products = readProducts(productInput)
     val customers = readCustomers(customerInput)
@@ -88,7 +88,7 @@ object FileIOSolution extends App {
     (wants, hasToPay)
   }
 
-  def writeReport(report: List[String], output: BufferedWriter): Unit = {
+  def writeReport(report: List[String], output: Writer): Unit = {
     output.write(report.mkString("\n"))
   }
 

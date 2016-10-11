@@ -1,10 +1,8 @@
 package workshop3.assignments
 
-import java.io.{BufferedInputStream, BufferedWriter, File, InputStream}
+import java.io.{File, InputStream, Writer}
 
 import resource.ManagedResource
-
-import scala.io.Source
 
 case class Customer(id: String, firstName: String, lastName: String)
 case class Product(id: String, title: String, price: Double)
@@ -29,11 +27,11 @@ object FileIO {
 
   def report2(orders: List[Order], products: List[Product], customers: List[Customer]): List[String] = ???
 
-  def generateReports(customerInput: BufferedInputStream,
-                      productInput: BufferedInputStream,
-                      orderInput: BufferedInputStream): (List[String], List[String]) = ???
+  def generateReports(customerInput: InputStream,
+                      productInput: InputStream,
+                      orderInput: InputStream): (List[String], List[String]) = ???
 
-  def writeReport(report: List[String], output: BufferedWriter): Unit = ???
+  def writeReport(report: List[String], output: Writer): Unit = ???
 
   val reports: ManagedResource[(List[String], List[String])] = ???
 
