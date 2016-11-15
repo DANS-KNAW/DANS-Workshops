@@ -1,4 +1,4 @@
-package workshop4.assignments
+package workshop4.assignments.solutions.RxEcosystem
 
 import java.io.File
 import java.nio.file.Path
@@ -7,6 +7,7 @@ import java.util
 import rx.Observer
 import rx.fileutils.{FileSystemEvent, FileSystemEventKind, FileSystemWatcher}
 import rx.schedulers.Schedulers
+import scala.collection.JavaConverters._
 
 import scala.language.implicitConversions
 
@@ -32,7 +33,7 @@ class FileSystemEventObserver extends Observer[FileSystemEvent] {
     * looks like all at once.
     */
   override def onNext(event: FileSystemEvent): Unit =
-    println(s"Got event ${event.getFileSystemEventKind} for ${event.getPath}")
+  println(s"Got event ${event.getFileSystemEventKind} for ${event.getPath}")
 }
 
 /**
@@ -47,20 +48,16 @@ object FileSystemEventObserver {
     val dir = new File("target/test/FileUtils")
     dir.mkdirs()
 
-    // wanted
-    val paths = Map((dir.toPath, FileSystemEventKind.values()))
-
-    // what compiles
-    val pathss = new util.HashMap[Path, Array[FileSystemEventKind]]()
-    pathss.put(dir.toPath, FileSystemEventKind.values())
-
     val subscription = FileSystemWatcher
       .newBuilder()
-      .addPaths(pathss)
+      .addPaths(Map((dir.toPath, FileSystemEventKind.values()), (dir.toPath, FileSystemEventKind.values())).asJava)
+      .addPath(dir.toPath, FileSystemEventKind.values(): _*) // triple time the same key, uses the last
+      //.addPath(dir.toPath, FileSystemEventKind.ENTRY_DELETE) // would overwrite the previous
       .withScheduler(Schedulers.io())
+      .withCurrentFsScanning(false) // did not see different behaviour with either value
       .build().subscribe(new FileSystemEventObserver)
 
-    // run until receiving input (deamonize?), causes InterruptedException (when executed with IDE)
+    // run until receiving input (demonize?), causes InterruptedException (when executed with IDE)
     System.in.read()
 
     // comes before processing the interrupt

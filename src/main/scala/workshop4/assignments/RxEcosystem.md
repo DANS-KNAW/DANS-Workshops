@@ -15,7 +15,7 @@ Here is a list of some of the projects you may want to take a look at (in no par
 * [RxJavaFx](https://github.com/ReactiveX/RxJavaFX)
 * [RxApacheHttp](https://github.com/ReactiveX/RxApacheHttp)
 * [RxJavaMath](https://github.com/ReactiveX/RxJavaMath)
-* [RxJavaFileUtils](https://github.com/ReactiveX/RxJavaFileUtils)
+* [RxJavaFileUtils](https://github.com/ReactiveX/RxJavaFileUtils) - see [RxFileUtils.scala]
 * [RxJava-file](https://github.com/davidmoten/rxjava-file)
 * [RxJava-extras](https://github.com/davidmoten/rxjava-extras)
 * [RxJava-jdbc](https://github.com/davidmoten/rxjava-jdbc)
@@ -24,4 +24,5 @@ Here is a list of some of the projects you may want to take a look at (in no par
 [ReactiveX]: https://github.com/reactivex
 [DavidMoten]: https://github.com/davidmoten
 [RxJavaString.scala]: solutions/RxEcosystem/RxJavaString.scala
+[RxFileUtils.scala]: solutions/RxEcosystem/RxFileUtils.scala
 [RxSLF4j.scala]: solutions/RxEcosystem/RxSLF4j.scala
