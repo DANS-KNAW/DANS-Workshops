@@ -23,15 +23,13 @@ import scala.language.implicitConversions
   */
 object Example extends App {
 
-  // val dir = new File("target/test/FileUtils/*") creates folder with name '*' !!!
-  val dir = new File("target/test/FileUtils")
-  dir.mkdirs()
+  val path1 = new File("target/test/FileUtils1/*").toPath // no events received
+  val path2 = new File("target/test/FileUtils2").toPath
 
   val subscription = FileSystemWatcher
     .newBuilder()
-    .addPaths(Map((dir.toPath, FileSystemEventKind.values()), (dir.toPath, FileSystemEventKind.values())).asJava)
-    .addPath(dir.toPath, FileSystemEventKind.values(): _*) // triple time the same keyvalue pairs, receiving events once
-    //.addPath(dir.toPath, FileSystemEventKind.ENTRY_DELETE) // would overwrite the previous
+    .addPaths(Map((path1, Array(FileSystemEventKind.ENTRY_CREATE)),(path2, FileSystemEventKind.values())).asJava)
+    .addPath(path1, FileSystemEventKind.values(): _*) // same key, overrides previous
     .withScheduler(Schedulers.io())
     .withCurrentFsScanning(false) // did not see different behaviour with either value
     .build()
