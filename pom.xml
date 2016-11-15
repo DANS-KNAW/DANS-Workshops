@@ -47,6 +47,11 @@
             <artifactId>rxjava-slf4j</artifactId>
             <version>0.6.2</version>
         </dependency>
+        <dependency>
+            <groupId>io.reactivex</groupId>
+            <artifactId>rxjava-file-utils</artifactId>
+            <version>0.1.4</version>
+        </dependency>
 
         <!-- utility libraries -->
         <dependency>
