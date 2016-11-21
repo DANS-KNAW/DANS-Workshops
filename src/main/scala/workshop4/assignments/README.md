@@ -9,4 +9,5 @@ Assignments workshop 4
     * [solution](solutions/WikipediaSuggestionSolution.scala)
 4. [RxEcosystem](RxEcosystem.md)
     * [RxJavaString](solutions/RxEcosystem/RxJavaString.scala)
+    * [RxJavaFileUtils](solutions/RxEcosystem/RxFileUtils.scala)
     * [RxSLF4j](solutions/RxEcosystem/RxSLF4j.scala)
