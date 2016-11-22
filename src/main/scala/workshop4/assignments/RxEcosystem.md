@@ -13,7 +13,7 @@ Here is a list of some of the projects you may want to take a look at (in no par
 
 * [RxJavaString](https://github.com/ReactiveX/RxJavaString) - see [RxJavaString.scala]
 * [RxJavaFx](https://github.com/ReactiveX/RxJavaFX)
-* [RxApacheHttp](https://github.com/ReactiveX/RxApacheHttp)
+* [RxApacheHttp](https://github.com/ReactiveX/RxApacheHttp) - see [ApacheTwitterClientComp (external link)]
 * [RxJavaMath](https://github.com/ReactiveX/RxJavaMath)
 * [RxJavaFileUtils](https://github.com/ReactiveX/RxJavaFileUtils) - see [RxFileUtils.scala]
 * [RxJava-file](https://github.com/davidmoten/rxjava-file)
@@ -26,3 +26,4 @@ Here is a list of some of the projects you may want to take a look at (in no par
 [RxJavaString.scala]: solutions/RxEcosystem/RxJavaString.scala
 [RxFileUtils.scala]: solutions/RxEcosystem/RxFileUtils.scala
 [RxSLF4j.scala]: solutions/RxEcosystem/RxSLF4j.scala
+[ApacheTwitterClientComp (external link)]: https://github.com/mushtaq/rx.scala.demo/blob/master/src/main/scala/top/apaches/ApacheTwitterClientComp.scala

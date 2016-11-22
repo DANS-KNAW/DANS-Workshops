@@ -64,8 +64,7 @@ object PiApproximationSolution {
     oneMillionApproximations.subscribe(println(_), _.printStackTrace(), () => println("done"))
   }
 
-  def main(args: Array[String]): Unit = {
-
+  def piApprox: Observable[Double] = {
     random
       .tumblingBuffer(2) // take 2 random numbers
       .map { case Seq(x, y) => x * x + y * y <= 1 } // check whether x^2 + y^2 <= 1
@@ -74,6 +73,11 @@ object PiApproximationSolution {
       }
       .drop(1) // drop the first
       .map(hits => (hits.successes * 4.0) / hits.total) // calculate pi
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    piApprox // user specifies what to do with this INFINITE stream
       .take(1000000) // use 1 million iterations
       .subscribe(println(_), _.printStackTrace(), () => println("done"))
   }
