@@ -1,6 +1,8 @@
 Scala course
 ============
 
+[![Build Status](https://travis-ci.org/DANS-KNAW/course-scala.png?branch=master)](https://travis-ci.org/DANS-KNAW/course-scala)
+
 This course is meant as an introduction to the Scala Programming Language for the developers at DANS-KNAW. 
 We will cover the various aspects of Scala in a number of workshops. Each workshop consists of a number of 
 tutorial style demos and some assignments for practicing.
