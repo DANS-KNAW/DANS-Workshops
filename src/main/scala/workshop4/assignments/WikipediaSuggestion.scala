@@ -24,6 +24,7 @@ import javafx.scene.control.{Button, ListView, TextField}
 import javafx.scene.layout.{HBox, VBox}
 import javafx.stage.{Stage, WindowEvent}
 
+import com.sun.deploy.net.URLEncoder
 import org.apache.commons.lang3.StringUtils
 import org.json4s.JsonAST.{JArray, JString}
 import org.json4s.native.JsonMethods
@@ -44,11 +45,7 @@ class WikipediaSuggestion extends Application {
   }
 
   def searchWikipedia(word: String): Observable[List[String]] = {
-    def urlifyWord(word: String): String = {
-      word.replace(" ", "%20")
-    }
-
-    val url = s"https://en.wikipedia.org/w/api.php?action=opensearch&search=${urlifyWord(word)}"
+    val url = s"https://en.wikipedia.org/w/api.php?action=opensearch&search=${URLEncoder.encode(word, "UTF-8")}"
     Observable.using(Source.fromURL(url))(r => Observable.just(r.mkString), _.close(), disposeEagerly = true)
       .map(parseJSON)
   }
